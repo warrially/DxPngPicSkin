@@ -23,7 +23,7 @@ unit DxPngEdit;
  以后再改，再优化
 }
 interface
-uses Windows,Messages,SysUtils,Classes,Controls,DxPngFormUI,Graphics,DxTimer,pngimage2010;
+uses Windows,Messages,SysUtils,Classes,vcl.Controls,DxPngFormUI,vcl.Graphics,DxTimer,pngimage2010;
 
 type
   TTextSelection = record
@@ -165,7 +165,7 @@ type
     property IngoreAlpha default True;
   end;
 implementation
-uses Clipbrd,Math;
+uses vcl.Clipbrd,Math;
 
 { TDxCustomPngEdit }
 

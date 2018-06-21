@@ -38,8 +38,8 @@ interface
 {$IFEND}
 
 uses
- Windows {$IFDEF UseDelphi}, Classes, Graphics, SysUtils{$ENDIF},
- ZLib,pnglang;
+ Windows {$IFDEF UseDelphi}, Classes, vcl.Graphics, SysUtils{$ENDIF},
+ ZLib,Vcl.Imaging.pnglang;
 
 const
   LibraryVersion = '1.564';

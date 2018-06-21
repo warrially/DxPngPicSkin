@@ -6,7 +6,7 @@ uses Windows,Classes,{$IFDEF VER130}DesignIntf{$ELSE}DesignIntf, DesignEditors{$
 
 procedure register;
 implementation
-uses Dialogs,DxPngFormUI,DxPngEdit;
+uses vcl.Dialogs,DxPngFormUI,DxPngEdit;
 
 procedure register;
 begin

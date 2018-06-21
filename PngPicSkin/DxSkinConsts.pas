@@ -1,7 +1,7 @@
 unit DxSkinConsts;
 
 interface
-uses Windows,Messages,Classes,SysUtils,Controls,Graphics,Forms,pngimage2010;
+uses Windows,Messages,Classes,SysUtils,vcl.Controls,vcl.Graphics,vcl.Forms,pngimage2010;
 {$R DefaultSkin.res}
 {$R Drag.RES}
 
@@ -26,7 +26,7 @@ function RectHeight(r: TRect): Integer;
 procedure GetParentImage(Control: TControl; Dest: TCanvas);
 function divmod(x,y: Integer;var modvalue: Integer): Integer;
 procedure TransparentDraw(DestCanvas,SourceCanvas: TCanvas;DestRect,SourceRect: TRect;TransparentColor: TColor);
-procedure MakeBmp(BmpIn: Graphics.TBitmap; var AverageColor: TColorRef);
+procedure MakeBmp(BmpIn: TBitmap; var AverageColor: TColorRef);
 
 var
   FormSkinPic,SysBtnBackPic,SysBtnPic: TDxPngImage;
@@ -356,9 +356,9 @@ begin
   end;
 end;
 
-procedure MakeBmp(BmpIn: Graphics.TBitmap; var AverageColor: TColorRef);
+procedure MakeBmp(BmpIn: TBitmap; var AverageColor: TColorRef);
 var
-  BmpOut: Graphics.TBitmap;
+  BmpOut: TBitmap;
   x, y: Integer;
   P: PRGBTriple;
   r, g, b: Integer;

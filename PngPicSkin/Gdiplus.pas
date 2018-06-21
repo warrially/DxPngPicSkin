@@ -33,7 +33,7 @@ unit Gdiplus;
 interface
 
 uses
-  SysUtils, ActiveX, Classes, Graphics, Windows, GdipTypes;
+  SysUtils, ActiveX, Classes, vcl.Graphics, Windows, GdipTypes;
 
  // Known Color
 const
@@ -1375,17 +1375,17 @@ type
 
   TGpGraphicsPath = class(TGdiplusBase)
   private
-    function GetFillMode: Graphics.TFillMode;
-    procedure SetFillMode(fillMode: Graphics.TFillMode);
+    function GetFillMode: vcl.Graphics.TFillMode;
+    procedure SetFillMode(fillMode: vcl.Graphics.TFillMode);
     function GetLastPoint: TGpPointF;
     function GetPointCount: Integer;
     function GetPathData: TPathData;
   public
-    constructor Create(fillMode: Graphics.TFillMode = fmAlternate); overload;
+    constructor Create(fillMode: vcl.Graphics.TFillMode = fmAlternate); overload;
     constructor Create(points: array of TGpPointF; types: array of TPathPointTypes;
-                           fillMode: Graphics.TFillMode  = fmAlternate); overload;
+                           fillMode: vcl.Graphics.TFillMode  = fmAlternate); overload;
     constructor Create(points: array of TGpPoint; types: array of TPathPointTypes;
-                           fillMode: Graphics.TFillMode  = fmAlternate); overload;
+                           fillMode: vcl.Graphics.TFillMode  = fmAlternate); overload;
 
     destructor Destroy; override;
     function Clone: TGpGraphicsPath;
@@ -1531,7 +1531,7 @@ type
     function IsOutlineVisible(x, y: Integer; const pen: TGpPen;
                               const g: TGpGraphics = nil): Boolean; overload;
     // 获取或设置一个 FillMode 枚举，它确定此 GraphicsPath 对象中的形状的内部如何填充。
-    property FillMode: Graphics.TFillMode read GetFillMode write SetFillMode;
+    property FillMode: vcl.Graphics.TFillMode read GetFillMode write SetFillMode;
     // 获取此 GraphicsPath 对象的 PathPoints 数组中的最后的点。
     property LastPoint: TGpPointF read GetLastPoint;
     property PointCount: Integer read GetPointCount;
@@ -1759,9 +1759,9 @@ type
     procedure FillRectangles(const brush: TGpBrush; const rects: array of TGpRect); overload;
     // 填充 Point 结构指定的点数组所定义的多边形的内部。
     procedure FillPolygon(const brush: TGpBrush; const points: array of TGpPointF;
-                          fillMode: Graphics.TFillMode = fmAlternate); overload;
+                          fillMode: vcl.Graphics.TFillMode = fmAlternate); overload;
     procedure FillPolygon(const brush: TGpBrush; const points: array of TGpPoint;
-                          fillMode: Graphics.TFillMode = fmAlternate); overload;
+                          fillMode: vcl.Graphics.TFillMode = fmAlternate); overload;
     // 填充边框所定义的椭圆的内部，该边框由一对坐标、一个宽度和一个高度指定。
     procedure FillEllipse(const brush: TGpBrush; const rect: TGpRectF); overload;
     procedure FillEllipse(const brush: TGpBrush; x, y, width, height: Single); overload;
@@ -1781,10 +1781,10 @@ type
     // 填充由 Point 结构数组定义的闭合基数样条曲线的内部。
     procedure FillClosedCurve(const brush: TGpBrush; const points: array of TGpPointF); overload;
     procedure FillClosedCurve(const brush: TGpBrush; const points: array of TGpPointF;
-                              fillMode: Graphics.TFillMode; tension: Single = 0.5); overload;
+                              fillMode: vcl.Graphics.TFillMode; tension: Single = 0.5); overload;
     procedure FillClosedCurve(const brush: TGpBrush; const points: array of TGpPoint); overload;
     procedure FillClosedCurve(const brush: TGpBrush; const points: array of TGpPoint;
-                              fillMode: Graphics.TFillMode; tension: Single = 0.5); overload;
+                              fillMode: vcl.Graphics.TFillMode; tension: Single = 0.5); overload;
     // 填充 Region 对象的内部。
     procedure FillRegion(const brush: TGpBrush; const region: TGpRegion);
     // 使用指定 StringFormat 对象的格式化属性，
@@ -2380,11 +2380,11 @@ function ARGB(a, r, g, b: BYTE): TARGB; overload;
 function ARGB(a: Byte; Argb: TARGB): TARGB; overload;
 
 function ARGBToCOLORREF(Argb: TARGB): Longint;
-function ARGBToColor(Argb: TARGB): Graphics.TColor;
+function ARGBToColor(Argb: TARGB): vcl.Graphics.TColor;
 function ARGBFromCOLORREF(Rgb: Longint): TARGB; overload;
 function ARGBFromCOLORREF(Alpha: Byte; Rgb: Longint): TARGB; overload;
-function ARGBFromTColor(Color: Graphics.TColor): TARGB; overload;
-function ARGBFromTColor(Alpha: Byte; Color: Graphics.TColor): TARGB; overload;
+function ARGBFromTColor(Color: vcl.Graphics.TColor): TARGB; overload;
+function ARGBFromTColor(Alpha: Byte; Color: vcl.Graphics.TColor): TARGB; overload;
 
 function GpSize(const Width, Height: TREAL): TGpSizeF; overload;
 function GpSize(const Width, Height: Integer): TGpSize; overload;
@@ -5530,7 +5530,7 @@ begin
 end;
 
 constructor TGpGraphicsPath.Create(points: array of TGpPointF;
-  types: array of TPathPointTypes; fillMode: Graphics.TFillMode);
+  types: array of TPathPointTypes; fillMode: vcl.Graphics.TFillMode);
 var
   count: Integer;
 begin
@@ -5542,7 +5542,7 @@ begin
 end;
 
 constructor TGpGraphicsPath.Create(points: array of TGpPoint;
-  types: array of TPathPointTypes; fillMode: Graphics.TFillMode);
+  types: array of TPathPointTypes; fillMode: vcl.Graphics.TFillMode);
 var
   count: Integer;
 begin
@@ -5553,7 +5553,7 @@ begin
   CheckStatus(GdipCreatePath2I(@points, @types, count, GdipTypes.TFillMode(fillMode), FNative));
 end;
 
-constructor TGpGraphicsPath.Create(fillMode: Graphics.TFillMode);
+constructor TGpGraphicsPath.Create(fillMode: vcl.Graphics.TFillMode);
 begin
   CheckStatus(GdipCreatePath(GdipTypes.TFillMode(fillMode), FNative));
 end;
@@ -5592,10 +5592,10 @@ begin
                          ObjectNative(matrix), ObjectNative(pen)));
 end;
 
-function TGpGraphicsPath.GetFillMode: Graphics.TFillMode;
+function TGpGraphicsPath.GetFillMode: vcl.Graphics.TFillMode;
 begin
   CheckStatus(GdipGetPathFillMode(Native, GdipTypes.TFillMode(RV.rINT)));
-  Result := Graphics.TFillMode(RV.rINT);
+  Result := vcl.Graphics.TFillMode(RV.rINT);
 end;
 
 function TGpGraphicsPath.GetLastPoint: TGpPointF;
@@ -5701,7 +5701,7 @@ begin
   CheckStatus(GdipReversePath(Native));
 end;
 
-procedure TGpGraphicsPath.SetFillMode(fillMode: Graphics.TFillMode);
+procedure TGpGraphicsPath.SetFillMode(fillMode: vcl.Graphics.TFillMode);
 begin
   CheckStatus(GdipSetPathFillMode(Native, GdipTypes.TFillMode(fillMode)));
 end;
@@ -6418,7 +6418,7 @@ begin
 end;
 
 procedure TGpGraphics.FillClosedCurve(const brush: TGpBrush;
-  const points: array of TGpPoint; fillMode: Graphics.TFillMode; tension: Single);
+  const points: array of TGpPoint; fillMode: vcl.Graphics.TFillMode; tension: Single);
 begin
   CheckStatus(GdipFillClosedCurve2I(Native, brush.Native,
                                     @points, Length(points), tension, GdipTypes.TFillMode(fillMode)));
@@ -6430,7 +6430,7 @@ begin
 end;
 
 procedure TGpGraphics.FillClosedCurve(const brush: TGpBrush;
-  const points: array of TGpPointF; fillMode: Graphics.TFillMode; tension: Single);
+  const points: array of TGpPointF; fillMode: vcl.Graphics.TFillMode; tension: Single);
 begin
   CheckStatus(GdipFillClosedCurve2(Native, brush.Native,
                                    @points, Length(points), tension, GdipTypes.TFillMode(fillMode)));
@@ -6488,13 +6488,13 @@ begin
 end;
 
 procedure TGpGraphics.FillPolygon(const brush: TGpBrush; const points: array of TGpPointF;
-  fillMode: Graphics.TFillMode);
+  fillMode: vcl.Graphics.TFillMode);
 begin
   CheckStatus(GdipFillPolygon(Native, brush.Native, @points, Length(points), GdipTypes.TFillMode(fillMode)));
 end;
 
 procedure TGpGraphics.FillPolygon(const brush: TGpBrush; const points: array of TGpPoint;
-  fillMode: Graphics.TFillMode);
+  fillMode: vcl.Graphics.TFillMode);
 begin
   CheckStatus(GdipFillPolygonI(Native, brush.Native, @points, Length(points), GdipTypes.TFillMode(fillMode)));
 end;
@@ -7121,7 +7121,7 @@ asm
   shr   eax, 8
 end;
 
-function ARGBToColor(Argb: TARGB): Graphics.TColor;
+function ARGBToColor(Argb: TARGB): vcl.Graphics.TColor;
 asm
   bswap eax
   shr   eax, 8
@@ -7148,14 +7148,14 @@ asm
   or    eax, 0ff000000h
 end;
 
-function ARGBFromTColor(Alpha: Byte; Color: Graphics.TColor): TARGB;
+function ARGBFromTColor(Alpha: Byte; Color: vcl.Graphics.TColor): TARGB;
 begin
   if Color < 0 then
     Color := GetSysColor(Color and $000000FF);
   Result := ARGBFromCOLORREF(Alpha, Color);
 end;
 
-function ARGBFromTColor(Color: Graphics.TColor): TARGB;
+function ARGBFromTColor(Color: vcl.Graphics.TColor): TARGB;
 begin
   Result := ARGBFromTColor(255, Color);
 end;

@@ -29,8 +29,8 @@ interface
 {$if CompilerVersion < 22}
   {$MESSAGE FATAL '本控件只支持XE及其XE之后的版本.'}
 {$ifend}
-uses Windows,Classes,Messages,SysUtils, Forms,Controls,Graphics,ExtCtrls,
-DxSkinConsts,Gdiplus,pngimage2010,Generics.Collections,Menus;
+uses Windows,Classes,Messages,SysUtils, vcl.Forms,vcl.Controls,vcl.Graphics,vcl.ExtCtrls,
+DxSkinConsts,Gdiplus,pngimage2010,Generics.Collections,vcl.Menus;
 
 type
   TDxPngUIControl = class;
